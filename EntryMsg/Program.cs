@@ -8,7 +8,7 @@ internal class Program
         Console.OutputEncoding = Encoding.Unicode;
         try
         {
-            int port = int.Parse(Console.ReadLine());
+            int port = 29070;
             EntryServer.Instance.Start(port);
         }
         catch (NotFiniteNumberException)

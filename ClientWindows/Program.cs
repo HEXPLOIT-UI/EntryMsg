@@ -1,19 +1,28 @@
-﻿using System;
+﻿using ClientWindows.forms;
+using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace ClientWindows
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+
+        public static Start_Menu mainForm;
+        public static Chat_Menu currentChatMenu;
+
         [STAThread]
         static void Main()
         {
+            AllocConsole();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            mainForm = new Start_Menu();
+            Application.Run(mainForm);
         }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
     }
 }
