@@ -118,7 +118,6 @@ namespace ClientWindows.forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.Username);
@@ -128,6 +127,7 @@ namespace ClientWindows.forms
             this.Controls.Add(this.metroButton1);
             this.Name = "Start_Menu";
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Lime;
             this.Text = "EntryMesseger Login";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
