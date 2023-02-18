@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System;
+using ClientWindows.network;
 
 namespace ClientWindows.forms
 {
@@ -31,57 +32,87 @@ namespace ClientWindows.forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.UserList = new MetroFramework.Controls.MetroPanel();
             this.SuspendLayout();
             // 
-            // label1
+            // metroPanel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(616, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Users:";
+            this.metroPanel1.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.metroPanel1.CustomBackground = true;
+            this.metroPanel1.HorizontalScrollbar = true;
+            this.metroPanel1.HorizontalScrollbarBarColor = true;
+            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = true;
+            this.metroPanel1.HorizontalScrollbarSize = 10;
+            this.metroPanel1.Location = new System.Drawing.Point(23, 55);
+            this.metroPanel1.Name = "metroPanel1";
+            this.metroPanel1.Size = new System.Drawing.Size(708, 382);
+            this.metroPanel1.Style = MetroFramework.MetroColorStyle.Lime;
+            this.metroPanel1.TabIndex = 0;
+            this.metroPanel1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroPanel1.VerticalScrollbarBarColor = true;
+            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // flowLayoutPanel1
+            // metroTextBox1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(21, 12);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(572, 371);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.metroTextBox1.FontWeight = MetroFramework.MetroTextBoxWeight.Light;
+            this.metroTextBox1.Location = new System.Drawing.Point(23, 463);
+            this.metroTextBox1.MaxLength = 1024;
+            this.metroTextBox1.Multiline = true;
+            this.metroTextBox1.Name = "metroTextBox1";
+            this.metroTextBox1.PromptText = "Write a message";
+            this.metroTextBox1.Size = new System.Drawing.Size(598, 23);
+            this.metroTextBox1.Style = MetroFramework.MetroColorStyle.Lime;
+            this.metroTextBox1.TabIndex = 1;
+            this.metroTextBox1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroTextBox1.UseStyleColors = true;
             // 
-            // textBox1
+            // metroButton1
             // 
-            this.textBox1.Location = new System.Drawing.Point(21, 402);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(436, 20);
-            this.textBox1.TabIndex = 3;
+            this.metroButton1.Location = new System.Drawing.Point(638, 463);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(93, 23);
+            this.metroButton1.Style = MetroFramework.MetroColorStyle.Lime;
+            this.metroButton1.TabIndex = 2;
+            this.metroButton1.Text = "Send";
+            this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
-            // button1
+            // UserList
             // 
-            this.button1.Location = new System.Drawing.Point(484, 402);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 20);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
+            this.UserList.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.UserList.HorizontalScrollbar = true;
+            this.UserList.HorizontalScrollbarBarColor = true;
+            this.UserList.HorizontalScrollbarHighlightOnWheel = true;
+            this.UserList.HorizontalScrollbarSize = 10;
+            this.UserList.Location = new System.Drawing.Point(762, 55);
+            this.UserList.Name = "UserList";
+            this.UserList.Size = new System.Drawing.Size(119, 302);
+            this.UserList.Style = MetroFramework.MetroColorStyle.Lime;
+            this.UserList.TabIndex = 3;
+            this.UserList.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.UserList.VerticalScrollbarBarColor = true;
+            this.UserList.VerticalScrollbarHighlightOnWheel = false;
+            this.UserList.VerticalScrollbarSize = 10;
             // 
             // Chat_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(917, 519);
+            this.Controls.Add(this.UserList);
+            this.Controls.Add(this.metroButton1);
+            this.Controls.Add(this.metroTextBox1);
+            this.Controls.Add(this.metroPanel1);
             this.Name = "Chat_Menu";
+            this.Style = MetroFramework.MetroColorStyle.Lime;
             this.Text = "Chat {name}";
+            this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
+            this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.FormClosing += form_Closing;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
         void form_Closing(object sender, CancelEventArgs e)
@@ -89,9 +120,10 @@ namespace ClientWindows.forms
             Program.mainForm.Show();
         }
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+
+        private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroTextBox metroTextBox1;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        public MetroFramework.Controls.MetroPanel UserList;
     }
 }

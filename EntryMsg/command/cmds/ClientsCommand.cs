@@ -19,7 +19,7 @@ namespace command.cmds
                 for (int i = 0; i < Clients.Count; i++)
                 {
                     var client = Clients[i];
-                    Console.WriteLine($"User ID: {i}\nUsername: {client.Username}\nPing: {client.ping}");
+                    Console.WriteLine($"ID: {i}\nUsername: {client.Username}\nUserID: {client.UserID}\nPing: {client.ping}");
                 }
             }
         }

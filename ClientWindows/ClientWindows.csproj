@@ -136,6 +136,10 @@
     <Compile Include="packet\CPacketLogin.cs" />
     <Compile Include="packet\IPacket.cs" />
     <Compile Include="packet\PacketDirection.cs" />
+    <Compile Include="packet\SPacketChatInfo.cs" />
+    <Compile Include="packet\SPacketClientAdd.cs" />
+    <Compile Include="packet\SPacketClientRemove.cs" />
+    <Compile Include="packet\SPacketServerMessage.cs" />
     <Compile Include="packet\SPacketKeepAlive.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,9 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MetroFramework.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

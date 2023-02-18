@@ -1,4 +1,5 @@
 ﻿using packet;
+using Server.packet;
 
 namespace network
 {
@@ -11,6 +12,10 @@ namespace network
             RegisterPacket(PacketDirection.SERVERBOUND, new CPacketKeepAlive());
             RegisterPacket(PacketDirection.SERVERBOUND, new CPacketLogin());
             RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketKeepAlive());
+            RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketClientAdd());
+            RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketClientRemove());
+            RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketServerMessage());
+            RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketChatInfo());
         }
 
         private static void RegisterPacket(PacketDirection enumDirection, IPacket packet)

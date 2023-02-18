@@ -54,6 +54,12 @@ internal class EntryServer
             else
             {
                 Console.WriteLine($"Disconnected: {connection.Channel.RemoteAddress}");
+                for (int k = 0; k < Clients.Count; k++)
+                {
+                    if(k == i) continue;
+                    var client = Clients[k];
+                    client.SendPacket(new SPacketClientRemove(connection.UserID));
+                }
                 Clients.Remove(connection);
                 break;
             }

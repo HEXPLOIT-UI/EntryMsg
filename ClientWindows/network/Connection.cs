@@ -7,6 +7,7 @@ using DotNetty.Handlers.Timeout;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
+using MetroFramework.Controls;
 
 namespace ClientWindows.network
 {
@@ -36,6 +37,23 @@ namespace ClientWindows.network
                 {
                     case SPacketKeepAlive packetKeepAlive:
                         SendPacket(new CPacketKeepAlive(packetKeepAlive.PingID));
+                        break;
+                    case SPacketClientAdd packetClientAdd:
+                        MetroLabel user = new MetroLabel();
+                        user.AutoSize = true;
+                        user.Name = packetClientAdd.UserID;
+                        user.Style = MetroFramework.MetroColorStyle.White;
+                        user.TabIndex = 2;
+                        user.Text = packetClientAdd.Username;
+                        user.Theme = MetroFramework.MetroThemeStyle.Dark;
+                        Program.currentChatMenu.UserList.Container.Add(user);
+                        break;
+                    case SPacketClientRemove packetClientRemove:
+                        Program.currentChatMenu.UserList.Container.Remove(Program.currentChatMenu.UserList.Container.Components[packetClientRemove.UserID]);
+                        break;
+                    case SPacketChatInfo packetChatInfo:
+                        Program.currentChatMenu.Text = $"Chat {packetChatInfo.ChatName}";
+                        Program.currentChatMenu.Update();
                         break;
                 }
             }

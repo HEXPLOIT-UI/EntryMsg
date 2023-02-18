@@ -1,6 +1,8 @@
 ﻿using DotNetty.Common.Utilities;
 using DotNetty.Transport.Channels;
 using packet;
+using Server;
+using Server.packet;
 
 namespace network
 {
@@ -8,6 +10,7 @@ namespace network
     {
         public IChannel Channel;
         public string Username, UserID;
+        public long UserConnectedID;
         private long lastPing, lastKeepAlive;
         public long ping;
         public long sendTime;
@@ -19,7 +22,9 @@ namespace network
         public override void ChannelActive(IChannelHandlerContext ctx)
         {
             Channel = ctx.Channel;
+            UserConnectedID = new Random().NextLong();
             Console.WriteLine($"New connection aviable");
+            SendPacket(new SPacketChatInfo(Settings.ChatName));
         }
         public override void ChannelInactive(IChannelHandlerContext ctx)
         {
@@ -40,6 +45,14 @@ namespace network
                         case CPacketLogin packetInfo:
                             Username = packetInfo.Username;
                             UserID = packetInfo.UserID;
+                            foreach (var client in EntryServer.Instance.Clients)
+                            {
+                                if (client.Username != null && client.UserID != null)
+                                {
+                                    client.SendPacket(new SPacketClientAdd(Username, UserID));
+                                    SendPacket(new SPacketClientAdd(client.Username, client.UserID));
+                                }
+                            }
                             break;
                     }
                 }
