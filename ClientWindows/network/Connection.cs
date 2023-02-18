@@ -46,10 +46,10 @@ namespace ClientWindows.network
                         user.TabIndex = 2;
                         user.Text = packetClientAdd.Username;
                         user.Theme = MetroFramework.MetroThemeStyle.Dark;
-                        Program.currentChatMenu.UserList.Container.Add(user);
+                        Program.currentChatMenu.UserList.Controls.Add(user);
                         break;
                     case SPacketClientRemove packetClientRemove:
-                        Program.currentChatMenu.UserList.Container.Remove(Program.currentChatMenu.UserList.Container.Components[packetClientRemove.UserID]);
+                        Program.currentChatMenu.UserList.Controls.Remove(Program.currentChatMenu.UserList.Container.Components[packetClientRemove.UserID]);
                         break;
                     case SPacketChatInfo packetChatInfo:
                         Program.currentChatMenu.Text = $"Chat {packetChatInfo.ChatName}";
