@@ -18,6 +18,7 @@ namespace ClientWindows
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             mainForm = new Start_Menu();
+            currentChatMenu = new Chat_Menu();
             Application.Run(mainForm);
         }
 

@@ -27,7 +27,6 @@ namespace ClientWindows.forms
                     {
                         Hide();
                         Console.WriteLine($"{ip} {port} {username} {userid}");
-                        Program.currentChatMenu = new Chat_Menu();
                         Program.currentChatMenu.Show();
                         new Thread(() =>
                         {
