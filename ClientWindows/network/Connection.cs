@@ -49,7 +49,7 @@ namespace ClientWindows.network
                         Program.currentChatMenu.UserList.Controls.Add(user);
                         break;
                     case SPacketClientRemove packetClientRemove:
-                        Program.currentChatMenu.UserList.Controls.Remove(Program.currentChatMenu.UserList.Container.Components[packetClientRemove.UserID]);
+                        Program.currentChatMenu.UserList.Controls.Remove(Program.currentChatMenu.UserList.Controls[packetClientRemove.UserID]);
                         break;
                     case SPacketChatInfo packetChatInfo:
                         Program.currentChatMenu.Text = $"Chat {packetChatInfo.ChatName}";
