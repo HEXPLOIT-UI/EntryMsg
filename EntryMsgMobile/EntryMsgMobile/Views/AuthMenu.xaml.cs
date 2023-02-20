@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatUIXForms.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +15,7 @@ namespace EntryMsgMobile
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new MainPage());
+            Navigation.PushAsync(new ChatPage());
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
