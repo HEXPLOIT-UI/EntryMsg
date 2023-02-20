@@ -49,8 +49,22 @@ namespace network
                             {
                                 if (client.Username != null && client.UserID != null)
                                 {
-                                    client.SendPacket(new SPacketClientAdd(Username, UserID));
+                                    if (client.UserConnectedID != UserConnectedID)
+                                    {
+                                        if (client.UserID != UserID)
+                                        {
+                                            client.SendPacket(new SPacketClientAdd(Username, UserID)); 
+                                        }
+                                        else
+                                        {
+                                            string reason = "User with this ID is already connected";
+                                            SendPacket(new SPacketDisconnect(reason));
+                                            CloseChannel($"Disconnect user {Username} by: {reason}");
+                                            break;
+                                        }
+                                    }
                                     SendPacket(new SPacketClientAdd(client.Username, client.UserID));
+                                    client.SendPacket(new SPacketServerMessage("User " + Username + " connected"));
                                 }
                             }
                             break;

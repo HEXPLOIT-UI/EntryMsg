@@ -32,32 +32,16 @@ namespace ClientWindows.forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.UserList = new MetroFramework.Controls.MetroPanel();
+            this.UserList = new System.Windows.Forms.ListView();
+            this.ChatName = new MetroFramework.Controls.MetroLabel();
+            this.ChatMessages = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
-            // 
-            // metroPanel1
-            // 
-            this.metroPanel1.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
-            this.metroPanel1.CustomBackground = true;
-            this.metroPanel1.HorizontalScrollbar = true;
-            this.metroPanel1.HorizontalScrollbarBarColor = true;
-            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = true;
-            this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(23, 55);
-            this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(708, 382);
-            this.metroPanel1.Style = MetroFramework.MetroColorStyle.Lime;
-            this.metroPanel1.TabIndex = 0;
-            this.metroPanel1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroPanel1.VerticalScrollbarBarColor = true;
-            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.VerticalScrollbarSize = 10;
             // 
             // metroTextBox1
             // 
+            this.metroTextBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.metroTextBox1.FontWeight = MetroFramework.MetroTextBoxWeight.Light;
             this.metroTextBox1.Location = new System.Drawing.Point(23, 463);
             this.metroTextBox1.MaxLength = 1024;
@@ -72,6 +56,7 @@ namespace ClientWindows.forms
             // 
             // metroButton1
             // 
+            this.metroButton1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.metroButton1.Location = new System.Drawing.Point(638, 463);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(93, 23);
@@ -82,36 +67,62 @@ namespace ClientWindows.forms
             // 
             // UserList
             // 
-            this.UserList.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
-            this.UserList.HorizontalScrollbar = true;
-            this.UserList.HorizontalScrollbarBarColor = true;
-            this.UserList.HorizontalScrollbarHighlightOnWheel = true;
-            this.UserList.HorizontalScrollbarSize = 10;
-            this.UserList.Location = new System.Drawing.Point(762, 55);
+            this.UserList.AllowColumnReorder = true;
+            this.UserList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.UserList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.UserList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UserList.GridLines = true;
+            this.UserList.HideSelection = false;
+            this.UserList.Location = new System.Drawing.Point(773, 55);
+            this.UserList.Margin = new System.Windows.Forms.Padding(2);
             this.UserList.Name = "UserList";
-            this.UserList.Size = new System.Drawing.Size(119, 302);
-            this.UserList.Style = MetroFramework.MetroColorStyle.Lime;
-            this.UserList.TabIndex = 3;
-            this.UserList.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.UserList.VerticalScrollbarBarColor = true;
-            this.UserList.VerticalScrollbarHighlightOnWheel = false;
-            this.UserList.VerticalScrollbarSize = 10;
+            this.UserList.Size = new System.Drawing.Size(121, 335);
+            this.UserList.TabIndex = 0;
+            this.UserList.UseCompatibleStateImageBehavior = false;
+            this.UserList.View = System.Windows.Forms.View.List;
+            // 
+            // ChatName
+            // 
+            this.ChatName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.ChatName.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.ChatName.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.ChatName.Location = new System.Drawing.Point(245, 17);
+            this.ChatName.Name = "ChatName";
+            this.ChatName.Size = new System.Drawing.Size(486, 35);
+            this.ChatName.Style = MetroFramework.MetroColorStyle.White;
+            this.ChatName.TabIndex = 3;
+            this.ChatName.Text = "Chat {name}";
+            this.ChatName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ChatName.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ChatName.UseStyleColors = true;
+            // 
+            // ChatMessages
+            // 
+            this.ChatMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.ChatMessages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.ChatMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ChatMessages.ForeColor = System.Drawing.Color.White;
+            this.ChatMessages.FormattingEnabled = true;
+            this.ChatMessages.HorizontalScrollbar = true;
+            this.ChatMessages.Location = new System.Drawing.Point(23, 53);
+            this.ChatMessages.Name = "ChatMessages";
+            this.ChatMessages.Size = new System.Drawing.Size(708, 392);
+            this.ChatMessages.TabIndex = 4;
             // 
             // Chat_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 519);
+            this.Controls.Add(this.ChatMessages);
+            this.Controls.Add(this.ChatName);
             this.Controls.Add(this.UserList);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.metroTextBox1);
-            this.Controls.Add(this.metroPanel1);
             this.Name = "Chat_Menu";
             this.Style = MetroFramework.MetroColorStyle.Lime;
-            this.Text = "Chat {name}";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.FormClosing += form_Closing;
             this.ResumeLayout(false);
 
         }
@@ -120,10 +131,10 @@ namespace ClientWindows.forms
             Program.mainForm.Show();
         }
         #endregion
-
-        private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private MetroFramework.Controls.MetroButton metroButton1;
-        public MetroFramework.Controls.MetroPanel UserList;
+        public System.Windows.Forms.ListView UserList;
+        public MetroFramework.Controls.MetroLabel ChatName;
+        public System.Windows.Forms.ListBox ChatMessages;
     }
 }

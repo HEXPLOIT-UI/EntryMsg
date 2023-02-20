@@ -3,23 +3,27 @@ using utils;
 
 namespace packet
 {
-    internal class SPacketServerMessage : IPacket
+    internal class SPacketUserMessage : IPacket
     {
-        public string Message;
-        public SPacketServerMessage() { }
+        public string Message, Username;
+        public SPacketUserMessage() { }
 
-        public SPacketServerMessage(string message)
+        public SPacketUserMessage(string message, string username)
         {
             Message = message;
+            Username = username;
         }
+
         public void ReadPacketData(IByteBuffer buf)
         {
             Message = PacketBuffer.ReadString(buf, 1024);
+            Username = PacketBuffer.ReadString(buf, 128);
         }
 
         public void WritePacketData(IByteBuffer buf)
         {
             PacketBuffer.WriteString(buf, Message);
+            PacketBuffer.WriteString(buf, Username);
         }
     }
 }

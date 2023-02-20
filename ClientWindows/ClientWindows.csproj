@@ -139,8 +139,10 @@
     <Compile Include="packet\SPacketChatInfo.cs" />
     <Compile Include="packet\SPacketClientAdd.cs" />
     <Compile Include="packet\SPacketClientRemove.cs" />
+    <Compile Include="packet\SPacketDisconnect.cs" />
     <Compile Include="packet\SPacketServerMessage.cs" />
     <Compile Include="packet\SPacketKeepAlive.cs" />
+    <Compile Include="packet\SPacketUserMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="forms\Start_Menu.cs">

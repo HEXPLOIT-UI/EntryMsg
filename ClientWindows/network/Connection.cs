@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading;
+using System.Windows.Forms;
 using ClientWindows.forms;
 using ClientWindows.packet;
 using DotNetty.Handlers.Timeout;
@@ -35,25 +36,27 @@ namespace ClientWindows.network
             {
                 switch (packet)
                 {
+                    case SPacketChatInfo packetChatInfo:
+                        Program.currentChatMenu.ChatName.Text = Program.currentChatMenu.ChatName.Text.Replace("{name}", packetChatInfo.ChatName);
+                        break;
                     case SPacketKeepAlive packetKeepAlive:
                         SendPacket(new CPacketKeepAlive(packetKeepAlive.PingID));
                         break;
                     case SPacketClientAdd packetClientAdd:
-                        MetroLabel user = new MetroLabel();
-                        user.AutoSize = true;
-                        user.Name = packetClientAdd.UserID;
-                        user.Style = MetroFramework.MetroColorStyle.White;
-                        user.TabIndex = 2;
-                        user.Text = packetClientAdd.Username;
-                        user.Theme = MetroFramework.MetroThemeStyle.Dark;
-                        Program.currentChatMenu.UserList.Controls.Add(user);
+                        Program.AddUser(packetClientAdd.UserID, packetClientAdd.Username);
                         break;
                     case SPacketClientRemove packetClientRemove:
-                        Program.currentChatMenu.UserList.Controls.Remove(Program.currentChatMenu.UserList.Controls[packetClientRemove.UserID]);
+                        Program.RemoveUser(packetClientRemove.UserID);
                         break;
-                    case SPacketChatInfo packetChatInfo:
-                        Program.currentChatMenu.Text = $"Chat {packetChatInfo.ChatName}";
-                        Program.currentChatMenu.Update();
+                    case SPacketDisconnect packetDisconnect:
+                        MessageBox.Show("Disconnected by: " + packetDisconnect.Reason , Program.currentChatMenu.ChatName.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Program.currentChatMenu.Close();
+                        break;
+                    case SPacketUserMessage packetUserMessage:
+                        Program.AddMessage(packetUserMessage.Message, packetUserMessage.Username);
+                        break;
+                    case SPacketServerMessage packetServerMessage:
+                        Program.AddServerMessage(packetServerMessage.Message);
                         break;
                 }
             }

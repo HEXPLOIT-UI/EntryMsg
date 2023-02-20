@@ -17,6 +17,8 @@ namespace ClientWindows.network
             RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketClientRemove());
             RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketServerMessage());
             RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketChatInfo());
+            RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketDisconnect());
+            RegisterPacket(PacketDirection.CLIENTBOUND, new SPacketUserMessage());
         }
 
         private static void RegisterPacket(PacketDirection enumDirection, IPacket packet)

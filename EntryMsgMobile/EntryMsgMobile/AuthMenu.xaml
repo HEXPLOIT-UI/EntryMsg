@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EntryMsgMobile.AuthMenu"
-             BackgroundColor="#112B47">
+             BackgroundColor="#111111">
     <ContentPage.Content>
         <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
             <Label Text="EntryMsg Login"
@@ -11,7 +11,7 @@
                 BackgroundColor="Transparent"
                 TextColor="White"
                 FontSize="30"/>
-            <Entry x:Name="txtUsername" Placeholder="Username" TextColor="White" PlaceholderColor="Gray" ></Entry>
+            <Entry x:Name="txtUsername" Placeholder="Username" TextColor="White" PlaceholderColor="Gray"></Entry>
             <Entry x:Name="txtUserid" Placeholder="UserID" TextColor="White" PlaceholderColor="Gray"></Entry>
             <Entry x:Name="txtIpPort" Placeholder="IP:PORT" TextColor="White" PlaceholderColor="Gray"></Entry>
             <Button
