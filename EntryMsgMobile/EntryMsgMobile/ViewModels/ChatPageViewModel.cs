@@ -4,6 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using ChatUIXForms.Models;
+using ClientMobile.network;
+using EntryMsgMobile;
+using EntryMsgMobile.packet;
 using Xamarin.Forms;
 
 namespace ChatUIXForms.ViewModels
@@ -25,14 +28,15 @@ namespace ChatUIXForms.ViewModels
 
         public ChatPageViewModel()
         {
-            Messages.Insert(0,new Message() { Text = "Hi" });
             MessageAppearingCommand = new Command<Message>(OnMessageAppearing);
             MessageDisappearingCommand = new Command<Message>(OnMessageDisappearing);
 
             OnSendCommand = new Command(() =>
             {
                 if(!string.IsNullOrEmpty(TextToSend)){
-                    Messages.Insert(0, new Message() { Text = TextToSend, User = "TestUser" });
+                    Message msg = new Message() { Text = TextToSend, User = App.User};
+                    Connection.SendPacket(new CPacketUserMessage(msg.Text, msg.User));
+                    Messages.Insert(0, msg);
                     TextToSend = string.Empty;
                 }
                

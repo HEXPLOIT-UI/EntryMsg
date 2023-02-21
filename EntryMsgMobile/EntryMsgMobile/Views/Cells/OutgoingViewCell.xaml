@@ -2,13 +2,20 @@
 <ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="ChatUIXForms.Views.Cells.OutgoingViewCell">
-     <Frame BackgroundColor="Gray"
+    <Frame BackgroundColor="#4f369b"
             Padding="10"
             Rotation="180"
             FlowDirection="LeftToRight"
             HasShadow="false"
             Margin="80,10,10,10">
-           <Label Text="{Binding Text}"
-                  TextColor="White"/>
+        <Label TextColor="White">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding User}" />
+                    <Span Text="{x:Static x:Environment.NewLine}" />
+                    <Span Text="{Binding Text}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
         </Frame>
 </ViewCell>

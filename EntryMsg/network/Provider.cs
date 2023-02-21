@@ -3,6 +3,7 @@ using DotNetty.Transport.Channels;
 using packet;
 using Server;
 using Server.packet;
+using System.Diagnostics;
 
 namespace network
 {
@@ -25,6 +26,7 @@ namespace network
             UserConnectedID = new Random().NextLong();
             Console.WriteLine($"New connection aviable");
             SendPacket(new SPacketChatInfo(Settings.ChatName));
+            SendPacket(new SPacketUserMessage("Connected", "Server"));
         }
         public override void ChannelInactive(IChannelHandlerContext ctx)
         {
@@ -43,31 +45,49 @@ namespace network
                             ping = DateTimeOffset.Now.ToUnixTimeMilliseconds() - lastPing;
                             break;
                         case CPacketLogin packetInfo:
-                            Username = packetInfo.Username;
-                            UserID = packetInfo.UserID;
-                            foreach (var client in EntryServer.Instance.Clients)
                             {
-                                if (client.Username != null && client.UserID != null)
+                                Username = packetInfo.Username;
+                                UserID = packetInfo.UserID;
+                                foreach (var client in EntryServer.Instance.Clients)
                                 {
-                                    if (client.UserConnectedID != UserConnectedID)
+                                    if (client.Username != null && client.UserID != null)
                                     {
-                                        if (client.UserID != UserID)
+                                        if (client.UserConnectedID != UserConnectedID)
                                         {
-                                            client.SendPacket(new SPacketClientAdd(Username, UserID)); 
+                                            if (client.UserID != UserID)
+                                            {
+                                                client.SendPacket(new SPacketClientAdd(Username, UserID));
+                                            }
+                                            else
+                                            {
+                                                string reason = "User with this ID is already connected";
+                                                SendPacket(new SPacketDisconnect(reason));
+                                                CloseChannel($"Disconnect user {Username} by: {reason}");
+                                                break;
+                                            }
                                         }
-                                        else
+                                        SendPacket(new SPacketClientAdd(client.Username, client.UserID));
+                                        client.SendPacket(new SPacketServerMessage("User " + Username + " connected"));
+                                    }
+                                }
+                                break;
+                            }
+                        case CPacketUserMessage PacketUserMessage:
+                            {
+                                Console.WriteLine($"Received message {PacketUserMessage.Message} from {PacketUserMessage.Username} in channel by {Username}");
+                                foreach (var client in EntryServer.Instance.Clients)
+                                {
+                                    if (client.Username != null && client.UserID != null)
+                                    {
+                                        if (client.UserConnectedID != UserConnectedID)
                                         {
-                                            string reason = "User with this ID is already connected";
-                                            SendPacket(new SPacketDisconnect(reason));
-                                            CloseChannel($"Disconnect user {Username} by: {reason}");
-                                            break;
+                                            Console.WriteLine($"sent to {client.Username}");
+                                            client.SendPacket(new SPacketUserMessage(PacketUserMessage.Message, PacketUserMessage.Username));
                                         }
                                     }
-                                    SendPacket(new SPacketClientAdd(client.Username, client.UserID));
-                                    client.SendPacket(new SPacketServerMessage("User " + Username + " connected"));
                                 }
+                                break;
                             }
-                            break;
                     }
                 }
                 catch (Exception exception)

@@ -1,11 +1,14 @@
-﻿using packet;
-using Server.packet;
+﻿
+using ClientMobile.packet;
+using EntryMsgMobile.packet;
+using System.Collections.Generic;
 
-namespace network
+namespace ClientMobile.network
 {
     internal class EnumConnectionState
     {
-        private static readonly IDictionary<PacketDirection, Dictionary<int, IPacket>> Packets =new Dictionary<PacketDirection, Dictionary<int, IPacket>>();
+        private static readonly IDictionary<PacketDirection, Dictionary<int, IPacket>> Packets =
+            new Dictionary<PacketDirection, Dictionary<int, IPacket>>();
 
         static EnumConnectionState()
         {

@@ -6,10 +6,13 @@ namespace EntryMsgMobile
 {
     public partial class App : Application
     {
+        public static string User = "";
+        public static string UserID = "";
+        public static string ipAddress = "";
+
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new AuthMenu());
         }
 

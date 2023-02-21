@@ -11,9 +11,9 @@
                 BackgroundColor="Transparent"
                 TextColor="White"
                 FontSize="30"/>
-            <Entry x:Name="txtUsername" Placeholder="Username" TextColor="White" PlaceholderColor="Gray"></Entry>
-            <Entry x:Name="txtUserid" Placeholder="UserID" TextColor="White" PlaceholderColor="Gray"></Entry>
-            <Entry x:Name="txtIpPort" Placeholder="IP:PORT" TextColor="White" PlaceholderColor="Gray"></Entry>
+            <Entry Text="User" x:Name="txtUsername" Placeholder="Username" TextColor="White" PlaceholderColor="Gray"></Entry>
+            <Entry Text="User_0" x:Name="txtUserid" Placeholder="UserID" TextColor="White" PlaceholderColor="Gray"></Entry>
+            <Entry Text="192.168.1.234:29070" x:Name="txtIpPort" Placeholder="IP:PORT" TextColor="White" PlaceholderColor="Gray"></Entry>
             <Button
                 VerticalOptions="Center"
                 Text="Connect"

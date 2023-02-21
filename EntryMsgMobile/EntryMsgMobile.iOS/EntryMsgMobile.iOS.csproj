@@ -123,6 +123,21 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="DotNetty.Buffers">
+      <Version>0.7.5</Version>
+    </PackageReference>
+    <PackageReference Include="DotNetty.Codecs">
+      <Version>0.7.5</Version>
+    </PackageReference>
+    <PackageReference Include="DotNetty.Common">
+      <Version>0.7.5</Version>
+    </PackageReference>
+    <PackageReference Include="DotNetty.Handlers">
+      <Version>0.7.5</Version>
+    </PackageReference>
+    <PackageReference Include="DotNetty.Transport">
+      <Version>0.7.5</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>

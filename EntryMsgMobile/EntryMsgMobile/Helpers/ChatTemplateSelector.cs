@@ -1,5 +1,6 @@
 ﻿using ChatUIXForms.Models;
 using ChatUIXForms.Views.Cells;
+using EntryMsgMobile;
 using Xamarin.Forms;
 
 namespace ChatUIXForms.Helpers
@@ -20,7 +21,7 @@ namespace ChatUIXForms.Helpers
             var messageVm = item as Message;
             if (messageVm == null)
                 return null;
-            return (messageVm.User == "TestUser")? outgoingDataTemplate: incomingDataTemplate;
+            return (messageVm.User == App.User) ? outgoingDataTemplate : incomingDataTemplate;
         }
 
     }

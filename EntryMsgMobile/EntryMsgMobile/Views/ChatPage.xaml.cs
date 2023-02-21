@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using ChatUIXForms.ViewModels;
+﻿using ChatUIXForms.ViewModels;
+using ClientMobile.network;
+using EntryMsgMobile;
 using Xamarin.Forms;
 
 namespace ChatUIXForms.Views
@@ -13,6 +11,7 @@ namespace ChatUIXForms.Views
         {
             InitializeComponent();
             this.BindingContext = new ChatPageViewModel();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         public void ScrollTap(object sender, System.EventArgs e)
@@ -45,6 +44,12 @@ namespace ChatUIXForms.Views
         public void OnListTapped(object sender, ItemTappedEventArgs e)
         {
             chatInput.UnFocusEntry();
+        }
+
+        private void Button_BackClicked(object sender, System.EventArgs e)
+        {
+            Connection.CloseChannel("User exit");
+            Navigation.PushAsync(new AuthMenu());
         }
     }
 }

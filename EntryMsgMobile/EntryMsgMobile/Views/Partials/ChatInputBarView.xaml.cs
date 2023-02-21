@@ -19,6 +19,7 @@ namespace ChatUIXForms.Views.Partials
         public void Handle_Completed(object sender, EventArgs e)
         {
             (this.Parent.Parent.BindingContext as ChatPageViewModel).OnSendCommand.Execute(null);
+            chatTextInput.Text = "";
             chatTextInput.Focus();
         }
 
